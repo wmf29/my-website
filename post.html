@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Result</title>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .result-container {
+            background-color: #0f0f1c;
+            padding: 20px;
+            width: 600px;
+            margin: 50px auto;
+            border: 4px solid #e69b00;
+            border-radius: 10px;
+        }
+        .result-header {
+            color: #e69b00;
+            text-align: center;
+        }
+        .result-item {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #2a2a4a;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h2 class="result-header">Registration Successful!</h2>
+        <div id="resultContent"></div>
+    </div>
+
+    <script>
+        // دالة لتحليل بيانات النموذج من URL
+        function getFormData() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                firstName: decodeURIComponent(params.get('firstName') || '',
+                lastName: decodeURIComponent(params.get('lastName') || ''),
+                screenName: decodeURIComponent(params.get('screenName') || ''),
+                dob: `${params.get('year')}-${params.get('month')}-${params.get('day')}`,
+                gender: params.get('gender') || 'Male',
+                country: params.get('country') || 'USA',
+                email: decodeURIComponent(params.get('email') || ''),
+                phone: params.get('phone') || ''
+            };
+        }
+
+        // دالة لعرض النتائج
+        function displayResults() {
+            const data = getFormData();
+            const resultDiv = document.getElementById('resultContent');
+            
+            let htmlContent = `
+                <div class="result-item">First Name: ${data.firstName}</div>
+                <div class="result-item">Last Name: ${data.lastName}</div>
+                <div class="result-item">Screen Name: ${data.screenName}</div>
+                <div class="result-item">Date of Birth: ${data.dob}</div>
+                <div class="result-item">Gender: ${data.gender}</div>
+                <div class="result-item">Country: ${data.country}</div>
+                <div class="result-item">Email: ${data.email}</div>
+                <div class="result-item">Phone: ${data.phone}</div>
+            `;
+
+            resultDiv.innerHTML = htmlContent;
+        }
+
+        // عرض النتائج عند تحميل الصفحة
+        window.onload = displayResults;
+    </script>
+</body>
+</html>
