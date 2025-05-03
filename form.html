@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #0f0f1c;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            border: 4px solid #e69b00;
+            border-radius: 10px;
+        }
+        h2 {
+            color: #e69b00;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: yellow;
+        }
+        input, select {
+            width: 100%;
+            padding: 7px;
+            margin-top: 5px;
+        }
+        .gender-options {
+            margin-top: 5px;
+        }
+        .checkbox-label {
+            color: yellow;
+            font-size: 14px;
+        }
+        .buttons {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .submit-btn {
+            background-color: green;
+            color: white;
+        }
+        .cancel-btn {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form action="form.php" method="post" onsubmit="return validateForm()">
+            <label>First Name</label>
+            <input type="text" name="firstName" id="firstName">
+
+            <label>Last Name</label>
+            <input type="text" name="lastName" id="lastName">
+
+            <label>Screen Name</label>
+            <input type="text" name="screenName" id="screenName">
+
+            <label>Date of Birth</label>
+            <select name="month" id="month">
+                <option>May</option> <!-- Add more months if needed -->
+            </select>
+            <select name="day" id="day">
+                <option>5</option>
+            </select>
+            <select name="year" id="year">
+                <option>1985</option>
+            </select>
+
+            <label>Gender</label>
+            <div class="gender-options">
+                <input type="radio" name="gender" value="Male" checked> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <label>Country</label>
+            <input type="text" name="country" id="country" value="USA">
+
+            <label>E-mail</label>
+            <input type="email" name="email" id="email">
+
+            <label>Phone</label>
+            <input type="text" name="phone" id="phone">
+
+            <label>Password</label>
+            <input type="password" name="password" id="password">
+
+            <label>Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword">
+
+            <label class="checkbox-label">
+                <input type="checkbox" id="terms"> I agree to the Terms of Use
+            </label>
+
+            <div class="buttons">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let requiredFields = ['firstName', 'lastName', 'screenName', 'email', 'phone', 'password', 'confirmPassword'];
+            for (let field of requiredFields) {
+                if (document.getElementById(field).value.trim() === "") {
+                    alert("Please fill in all required fields.");
+                    return false;
+                }
+            }
+
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            if (!document.getElementById('terms').checked) {
+                alert("You must agree to the Terms of Use.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
