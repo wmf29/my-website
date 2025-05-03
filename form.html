@@ -2,145 +2,225 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Registration Form</title>
     <style>
+        /* تنسيقات عامة */
         body {
             background-color: #1a1a2e;
             color: #fff;
             font-family: Arial, sans-serif;
-        }
-        .container {
-            background-color: #0f0f1c;
+            margin: 0;
             padding: 20px;
-            width: 400px;
-            margin: auto;
-            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #0f0f1c;
             border: 4px solid #e69b00;
             border-radius: 10px;
         }
+
         h2 {
             color: #e69b00;
             text-align: center;
         }
-        label {
+
+        /* تنسيقات النموذج */
+        .form-section label {
             display: block;
-            margin-top: 10px;
+            margin: 15px 0 5px;
             color: yellow;
         }
-        input, select {
+
+        .form-section input, 
+        .form-section select {
             width: 100%;
-            padding: 7px;
-            margin-top: 5px;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #2a2a4a;
+            color: white;
         }
+
         .gender-options {
-            margin-top: 5px;
+            margin: 10px 0;
         }
-        .checkbox-label {
-            color: yellow;
-            font-size: 14px;
-        }
+
         .buttons {
-            margin-top: 15px;
+            margin-top: 20px;
             text-align: center;
         }
-        .buttons button {
-            padding: 10px 20px;
+
+        button {
+            padding: 10px 25px;
             margin: 0 10px;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
             font-weight: bold;
         }
+
         .submit-btn {
-            background-color: green;
+            background-color: #28a745;
             color: white;
         }
+
         .cancel-btn {
-            background-color: blue;
+            background-color: #007bff;
             color: white;
+        }
+
+        /* تنسيقات قسم النتائج */
+        .result-section {
+            display: none;
+        }
+
+        .result-item {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #2a2a4a;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Sign Up</h2>
-        <form action="form.php" method="post" onsubmit="return validateForm()">
-            <label>First Name</label>
-            <input type="text" name="firstName" id="firstName">
+        <!-- قسم النموذج -->
+        <div class="form-section" id="formSection">
+            <h2>Sign Up Form</h2>
+            <form id="registrationForm" method="GET">
+                <label>First Name</label>
+                <input type="text" name="firstName" required>
 
-            <label>Last Name</label>
-            <input type="text" name="lastName" id="lastName">
+                <label>Last Name</label>
+                <input type="text" name="lastName" required>
 
-            <label>Screen Name</label>
-            <input type="text" name="screenName" id="screenName">
+                <label>Screen Name</label>
+                <input type="text" name="screenName" required>
 
-            <label>Date of Birth</label>
-            <select name="month" id="month">
-                <option>May</option> <!-- Add more months if needed -->
-            </select>
-            <select name="day" id="day">
-                <option>5</option>
-            </select>
-            <select name="year" id="year">
-                <option>1985</option>
-            </select>
+                <label>Date of Birth</label>
+                <div>
+                    <select name="month">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <!-- أضف باقي الشهور -->
+                    </select>
+                    <select name="day">
+                        <?php 
+                            for ($i = 1; $i <= 31; $i++) {
+                                echo "<option>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";
+                            }
+                        ?>
+                    </select>
+                    <select name="year">
+                        <?php 
+                            for ($i = date('Y'); $i >= 1900; $i--) {
+                                echo "<option>$i</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
 
-            <label>Gender</label>
-            <div class="gender-options">
-                <input type="radio" name="gender" value="Male" checked> Male
-                <input type="radio" name="gender" value="Female"> Female
-            </div>
+                <label>Gender</label>
+                <div class="gender-options">
+                    <input type="radio" name="gender" value="Male" checked> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                </div>
 
-            <label>Country</label>
-            <input type="text" name="country" id="country" value="USA">
+                <label>Country</label>
+                <select name="country">
+                    <option value="USA">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <!-- أضف باقي الدول -->
+                </select>
 
-            <label>E-mail</label>
-            <input type="email" name="email" id="email">
+                <label>Email</label>
+                <input type="email" name="email" required>
 
-            <label>Phone</label>
-            <input type="text" name="phone" id="phone">
+                <label>Phone</label>
+                <input type="tel" name="phone" pattern="[0-9]{10}" required>
 
-            <label>Password</label>
-            <input type="password" name="password" id="password">
+                <label>Password</label>
+                <input type="password" name="password" required>
 
-            <label>Confirm Password</label>
-            <input type="password" name="confirmPassword" id="confirmPassword">
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword" required>
 
-            <label class="checkbox-label">
-                <input type="checkbox" id="terms"> I agree to the Terms of Use
-            </label>
+                <label>
+                    <input type="checkbox" name="terms" required> I agree to the Terms
+                </label>
 
-            <div class="buttons">
-                <button type="submit" class="submit-btn">Submit</button>
-                <button type="reset" class="cancel-btn">Cancel</button>
-            </div>
-        </form>
+                <div class="buttons">
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="reset" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- قسم النتائج -->
+        <div class="result-section" id="resultSection">
+            <h2>Registration Successful!</h2>
+            <div id="resultContent"></div>
+        </div>
     </div>
 
     <script>
-        function validateForm() {
-            let requiredFields = ['firstName', 'lastName', 'screenName', 'email', 'phone', 'password', 'confirmPassword'];
-            for (let field of requiredFields) {
-                if (document.getElementById(field).value.trim() === "") {
-                    alert("Please fill in all required fields.");
-                    return false;
-                }
+        // دالة لعرض النتائج
+        function showResults() {
+            const params = new URLSearchParams(window.location.search);
+            
+            if(params.toString()) {
+                document.getElementById('formSection').style.display = 'none';
+                document.getElementById('resultSection').style.display = 'block';
+                
+                const resultContent = document.getElementById('resultContent');
+                resultContent.innerHTML = `
+                    <div class="result-item">First Name: ${params.get('firstName')}</div>
+                    <div class="result-item">Last Name: ${params.get('lastName')}</div>
+                    <div class="result-item">Screen Name: ${params.get('screenName')}</div>
+                    <div class="result-item">Date of Birth: 
+                        ${params.get('year')}-${params.get('month')}-${params.get('day')}
+                    </div>
+                    <div class="result-item">Gender: ${params.get('gender')}</div>
+                    <div class="result-item">Country: ${params.get('country')}</div>
+                    <div class="result-item">Email: ${params.get('email')}</div>
+                    <div class="result-item">Phone: ${params.get('phone')}</div>
+                `;
             }
-
-            let password = document.getElementById('password').value;
-            let confirmPassword = document.getElementById('confirmPassword').value;
-
-            if (password !== confirmPassword) {
-                alert("Passwords do not match.");
-                return false;
-            }
-
-            if (!document.getElementById('terms').checked) {
-                alert("You must agree to the Terms of Use.");
-                return false;
-            }
-
-            return true;
         }
+
+        // دالة التحقق من البيانات
+        function validateForm(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const password = form.password.value;
+            const confirmPassword = form.confirmPassword.value;
+
+            // التحقق من تطابق كلمات المرور
+            if(password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // التحقق من رقم الهاتف
+            if(!/^\d{10}$/.test(form.phone.value)) {
+                alert('Invalid phone number!');
+                return;
+            }
+
+            // إذا نجحت جميع الفحوصات
+            form.submit();
+        }
+
+        // أحداث التحميل
+        window.onload = () => {
+            document.getElementById('registrationForm')
+                    .addEventListener('submit', validateForm);
+            showResults();
+        };
     </script>
 </body>
 </html>
