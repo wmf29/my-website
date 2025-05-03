@@ -1,0 +1,209 @@
+<!-- الصفحة الأولى (index.html) -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الموقع الشخصي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="university.html">عن الجامعة</a></li>
+                <li><a href="contact.html">اتصل بي</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="personal-info">
+            <img src="images/my-photo.jpg" alt="الصورة الشخصية" class="profile-img">
+            <div class="bio">
+                <h1>مرحبا، أنا وعد مازن بنات</h1>
+                <p>
+                    طالبة علوم حاسوب  <br>
+                    الهوايات: البرمجة، القراءة، اعداد الحلويات
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 جميع الحقوق محفوظة</p>
+    </footer>
+</body>
+</html>
+<!-- الصفحة الثانية (university.html) -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>عن الجامعة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <!-- نفس شريط التنقل -->
+    </header>
+
+    <main>
+        <section class="university-info">
+            <h2>جامعة القدس المفتوحة</h2>
+            <p> بدأ التفكير في إنشاء الجامعة عام 1975م انطلاقاً من احتياجات الشعب الفلسطيني للتعليم العالي في ظل أوضاعه السكانية والاجتماعية والاقتصادية تحت الاحتلال الإسرائيلي. وبطلب من منظمة التحرير الفلسطينية، قامت منظمة اليونسكو بإعداد دراسة الجدوى لمشروع الجامعة التي استكملت عام 1980م وأقرها المؤتمر العام لليونسكو، وفي عام 1981م أقر المجلس الوطني الفلسطيني المشروع، غير أن الاجتياح الإسرائيلي للبنان حال دون المباشرة في تنفيذه حتى العام 1985م. افتُتح للجامعة مقر مؤقت في عمان أواخر العام 1985م، بموافقة رسمية من وزارة الخارجية الأردنية، وتركز العمل خلال الفترة الواقعة بين (1985-1991) على إعداد الخطط الدراسية والكليات، واعتماد التخصصات العلمية، وإنتاج المواد التعليمية، وخاصة المطبوعة والكتب الطلابية والوسائط التعليمية المساندة السمعية منها والبصرية.</p>
+            
+            <h3>الكليات الأكاديمية:</h3>
+            <ul class="colleges-list">
+                <li>كلية التكنولوجيا والعلوم التطبيقية</li>
+                <li>كلية الزراعة</li>
+                <li>كلية التنمية الاجتماعية والأسرية</li>
+                <li> كلية العلوم الإدارية والاقتصادية</li>
+                <li> كلية العلوم التربوية</li>
+                <li> كلية الإعلام</li>
+                <li> كلية الآداب</li>
+                <li> كلية الدراسات العليا</li>
+            </ul>
+
+            <a href=" https://www.qou.edu/ar/aboutQOU/historyandGoals.jsp#" target="_blank" class="uni-link">
+                زيارة الموقع الرسمي للجامعة
+            </a>
+        </section>
+    </main>
+
+    <!-- نفس التذييل -->
+</body>
+</html>
+
+<!-- الصفحة الثالثة (contact.html) -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اتصل بي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <!-- نفس شريط التنقل -->
+    </header>
+
+    <main>
+        <section class="contact-form">
+            <h2>تواصل معي</h2>
+            <form>
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" required>
+                
+                <label for="message">الرسالة:</label>
+                <textarea id="message" rows="5" required></textarea>
+                
+                <button type="submit">إرسال</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- نفس التذييل -->
+</body>
+</html>
+/* ملف style.css */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #3498db;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.profile-img {
+    width: 200px;
+    border-radius: 10px;
+    float: right;
+    margin-left: 2rem;
+}
+
+.university-info {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.colleges-list {
+    columns: 2;
+    list-style-type: square;
+}
+
+.uni-link {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.contact-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, textarea, button {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #2c3e50;
+    color: white;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #2c3e50;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
